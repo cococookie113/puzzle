@@ -15,7 +15,7 @@ type StartScene struct {
 
 func (s *StartScene) Startup() {
 	var err error
-	s.startImg, _, err = ebitenutil.NewImageFromFile("./images/start.png", ebiten.FilterDefault)
+	s.startImg, _, err = ebitenutil.NewImageFromFile("./images/monalisa.png", ebiten.FilterDefault)
 	if err != nil {
 		log.Fatalf("read file error: %v", err)
 	}
