@@ -3,9 +3,9 @@ package main
 import (
 	"log"
 
-	"github.com/cococookie113/puzzle/game/global"
-	"github.com/cococookie113/puzzle/game/scenemanager"
-	"github.com/cococookie113/puzzle/game/scenes"
+	"github.com/cococookie113/puzzle/global"
+	"github.com/cococookie113/puzzle/scenemanager"
+	"github.com/cococookie113/puzzle/scenes"
 	"github.com/hajimehoshi/ebiten"
 )
 
