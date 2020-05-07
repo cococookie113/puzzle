@@ -3,6 +3,7 @@ package scenes
 import (
 	"log"
 
+	"github.com/cococookie113/puzzle/font"
 	"github.com/cococookie113/puzzle/scenemanager"
 	"github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/ebitenutil"
@@ -23,6 +24,8 @@ func (s *StartScene) Startup() {
 
 func (s *StartScene) Update(screen *ebiten.Image) error {
 	screen.DrawImage(s.startImg, nil)
+
+	font.DrawTextWithShadow()
 
 	if inpututil.IsMouseButtonJustReleased(ebiten.MouseButtonLeft) {
 		// Set GameScene
