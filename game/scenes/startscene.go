@@ -3,7 +3,7 @@ package scenes
 import (
 	"log"
 
-	"github.com/cococookie113/12jangi/game/scenemanager"
+	"github.com/cococookie113/puzzle/game/scenemanager"
 	"github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/ebitenutil"
 	"github.com/hajimehoshi/ebiten/inpututil"
