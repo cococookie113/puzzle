@@ -5,11 +5,11 @@ import (
 	"log"
 
 	"github.com/cococookie113/puzzle/font"
+	"github.com/cococookie113/puzzle/global"
 	"github.com/cococookie113/puzzle/scenemanager"
 	"github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/ebitenutil"
 	"github.com/hajimehoshi/ebiten/inpututil"
-	"github.com/yourname/yourgame/go/pkg/mod/github.com/cococookie113/12jangi@v0.0.0-20200506051726-18b80c2abaff/game/global"
 )
 
 type StartScene struct {
