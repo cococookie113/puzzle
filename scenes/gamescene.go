@@ -3,6 +3,7 @@ package scenes
 import (
 	"image"
 	"log"
+	"math/rand"
 
 	"github.com/cococookie113/puzzle/global"
 
@@ -37,8 +38,32 @@ func (g *GameScene) Startup() {
 		}
 	}
 
+	arr := make([]int, global.PuzzleColumns*global.PuzzleRows)
+	idx := 0
+	for i := 0; i < global.PuzzleColumns; i++ {
+		for j := 0; j < global.PuzzleRows; j++ {
+			if i == global.PuzzleColumns-1 && j == global.PuzzleRows-1 {
+				continue
+			}
+			arr[j*global.PuzzleColumns+i] = idx
+			idx++
+		}
+	}
+
 	g.blankX = global.PuzzleColumns - 1
 	g.blankY = global.PuzzleRows - 1
+
+	for i := 0; i < global.PuzzleColumns; i++ {
+		for j := 0; j < global.PuzzleRows; j++ {
+			if i == g.blankX && j == g.blankY {
+				g.board[i][j] = -1
+				continue
+			}
+			idx := rand.Intn(len(arr))
+			g.board[i][j] = arr[idx]
+			arr = append(arr[:idx], arr[idx+1:]...)
+		}
+	}
 
 	for i := 0; i < global.PuzzleColumns; i++ {
 		for j := 0; j < global.PuzzleRows; j++ {
