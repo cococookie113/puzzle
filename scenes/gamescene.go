@@ -1,9 +1,10 @@
 package scenes
 
 import (
-	"default/GitHub/puzzle/global"
 	"image"
 	"log"
+
+	"github.com/cococookie113/puzzle/global"
 
 	"github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/ebitenutil"
