@@ -28,14 +28,14 @@ func (g *GameScene) Startup() {
 	height := global.ScreenHeight / global.PuzzleRows
 
 	for i := 0; i < global.PuzzleColumns; i++ {
-		for j := 0; i < global.PuzzleRows; j++ {
+		for j := 0; j < global.PuzzleRows; j++ {
 
 			g.subImgs[j*global.PuzzleColumns+i] = g.bgimg.SubImage(image.Rect(i*width, j*height, i*width+width, j*height+height)).(*ebiten.Image)
 
 		}
 	}
 	for i := 0; i < global.PuzzleColumns; i++ {
-		for j := 0; i < global.PuzzleRows; j++ {
+		for j := 0; j < global.PuzzleRows; j++ {
 
 			g.board[i][j] = j*global.PuzzleColumns + i
 
@@ -47,7 +47,7 @@ func (g *GameScene) Startup() {
 // Update GameScene
 func (g *GameScene) Update(screen *ebiten.Image) error {
 	for i := 0; i < global.PuzzleColumns; i++ {
-		for j := 0; i < global.PuzzleRows; j++ {
+		for j := 0; j < global.PuzzleRows; j++ {
 
 			screen.DrawImage(g.subImgs[g.board[i][j]], nil)
 
