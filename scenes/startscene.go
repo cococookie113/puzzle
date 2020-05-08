@@ -12,10 +12,12 @@ import (
 	"github.com/hajimehoshi/ebiten/inpututil"
 )
 
+//StartScene start scene
 type StartScene struct {
 	startImg *ebiten.Image
 }
 
+//Startup startup
 func (s *StartScene) Startup() {
 	var err error
 	s.startImg, _, err = ebitenutil.NewImageFromFile("./images/monalisa.png", ebiten.FilterDefault)
@@ -24,6 +26,7 @@ func (s *StartScene) Startup() {
 	}
 }
 
+//Update update
 func (s *StartScene) Update(screen *ebiten.Image) error {
 	screen.DrawImage(s.startImg, nil)
 
