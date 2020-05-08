@@ -13,7 +13,7 @@ import (
 type GameScene struct {
 	bgimg   *ebiten.Image
 	subImgs [global.PuzzleColumns * global.PuzzleRows]*ebiten.Image
-	board [global.PuzzleColumns][global.PuzzleRows]int*ebiten.Image
+	board   [global.PuzzleColumns][global.PuzzleRows]int
 }
 
 //Startup initialize GameScene
@@ -36,8 +36,8 @@ func (g *GameScene) Startup() {
 	for i := 0; i < global.PuzzleColumns; i++ {
 		for j := 0; i < global.PuzzleRows; j++ {
 
-			g.board[i][j] = j * global.PuzzleColumns + i
-          
+			g.board[i][j] = j*global.PuzzleColumns + i
+
 		}
 	}
 
@@ -48,8 +48,8 @@ func (g *GameScene) Update(screen *ebiten.Image) error {
 	for i := 0; i < global.PuzzleColumns; i++ {
 		for j := 0; i < global.PuzzleRows; j++ {
 
-		   sceen.DrawImage(g.subImgs[g.board[i][j]],nil)
-		   
+			screen.DrawImage(g.subImgs[g.board[i][j]], nil)
+
 		}
 	}
 
