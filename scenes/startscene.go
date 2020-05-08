@@ -27,7 +27,9 @@ func (s *StartScene) Startup() {
 func (s *StartScene) Update(screen *ebiten.Image) error {
 	screen.DrawImage(s.startImg, nil)
 
-	font.DrawTextWithShadow(screen, "Press Any Button", global.ScreenWidth/2, global.ScreenHeight/2, 3, color.Black)
+	width := font.TextWidth("Press Any Button", 3)
+	font.DrawTextWithShadow(screen, "Press Any Button",
+		global.ScreenWidth/2-width/2, global.ScreenHeight/2, 3, color.Black)
 
 	if inpututil.IsMouseButtonJustReleased(ebiten.MouseButtonLeft) {
 		// Set GameScene
