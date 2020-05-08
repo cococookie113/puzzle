@@ -8,13 +8,15 @@ import (
 
 	"github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/ebitenutil"
+	"github.com/hajimehoshi/ebiten/inpututil"
 )
 
 // GameScene scene of game
 type GameScene struct {
-	bgimg   *ebiten.Image
-	subImgs [global.PuzzleColumns * global.PuzzleRows]*ebiten.Image
-	board   [global.PuzzleColumns][global.PuzzleRows]int
+	bgimg          *ebiten.Image
+	subImgs        [global.PuzzleColumns * global.PuzzleRows]*ebiten.Image
+	board          [global.PuzzleColumns][global.PuzzleRows]int
+	blankX, blankY int
 }
 
 //Startup initialize GameScene
@@ -35,10 +37,17 @@ func (g *GameScene) Startup() {
 		}
 	}
 
+	g.blankX = global.PuzzleColumns - 1
+	g.blankY = global.PuzzleRows - 1
+
 	for i := 0; i < global.PuzzleColumns; i++ {
 		for j := 0; j < global.PuzzleRows; j++ {
 
-			g.board[i][j] = j*global.PuzzleColumns + i
+			if i == g.blankX && j == g.blankY {
+				g.board[i][j] = -1
+			} else {
+				g.board[i][j] = j*global.PuzzleColumns + i
+			}
 
 		}
 	}
@@ -47,13 +56,38 @@ func (g *GameScene) Startup() {
 
 // Update GameScene
 func (g *GameScene) Update(screen *ebiten.Image) error {
+	if inpututil.IsKeyJustReleased(ebiten.KeyUp) {
+		if g.blankY > 0 {
+			g.board[g.blankX][g.blankY] = g.board[g.blankX][g.blankY-1]
+			g.board[g.blankX][g.blankY-1] = -1
+			g.blankY--
+		}
+	} else if inpututil.IsKeyJustReleased(ebiten.KeyDown) {
+		if g.blankY < global.PuzzleRows-1 {
+			g.board[g.blankX][g.blankY] = g.board[g.blankX][g.blankY+1]
+			g.board[g.blankX][g.blankY+1] = -1
+			g.blankY++
+		}
+	} else if inpututil.IsKeyJustReleased(ebiten.KeyLeft) {
+		if g.blankX > 0 {
+			g.board[g.blankX][g.blankY] = g.board[g.blankX-1][g.blankY]
+			g.board[g.blankX-1][g.blankY] = -1
+			g.blankX--
+		}
+	} else if inpututil.IsKeyJustReleased(ebiten.KeyRight) {
+		if g.blankX < global.PuzzleColumns-1 {
+			g.board[g.blankX][g.blankY] = g.board[g.blankX+1][g.blankY]
+			g.board[g.blankX+1][g.blankY] = -1
+			g.blankX++
+		}
+	}
 
 	width := global.ScreenWidth / global.PuzzleColumns
 	height := global.ScreenHeight / global.PuzzleRows
 
 	for i := 0; i < global.PuzzleColumns; i++ {
 		for j := 0; j < global.PuzzleRows; j++ {
-			if i == global.PuzzleColumns-1 && j == global.PuzzleRows-1 {
+			if g.board[i][j] == -1 {
 				continue
 			}
 
