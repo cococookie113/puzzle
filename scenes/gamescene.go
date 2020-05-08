@@ -53,6 +53,10 @@ func (g *GameScene) Update(screen *ebiten.Image) error {
 
 	for i := 0; i < global.PuzzleColumns; i++ {
 		for j := 0; j < global.PuzzleRows; j++ {
+			if i == global.PuzzleColumns-1 && j == global.PuzzleRows-1 {
+				continue
+			}
+
 			x := i * width
 			y := j * height
 
