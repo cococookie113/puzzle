@@ -65,18 +65,6 @@ func (g *GameScene) Startup() {
 		}
 	}
 
-	for i := 0; i < global.PuzzleColumns; i++ {
-		for j := 0; j < global.PuzzleRows; j++ {
-
-			if i == g.blankX && j == g.blankY {
-				g.board[i][j] = -1
-			} else {
-				g.board[i][j] = j*global.PuzzleColumns + i
-			}
-
-		}
-	}
-
 }
 
 // Update GameScene
