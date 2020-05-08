@@ -34,6 +34,7 @@ func (g *GameScene) Startup() {
 
 		}
 	}
+
 	for i := 0; i < global.PuzzleColumns; i++ {
 		for j := 0; j < global.PuzzleRows; j++ {
 
@@ -46,10 +47,19 @@ func (g *GameScene) Startup() {
 
 // Update GameScene
 func (g *GameScene) Update(screen *ebiten.Image) error {
+
+	width := global.ScreenWidth / global.PuzzleColumns
+	height := global.ScreenHeight / global.PuzzleRows
+
 	for i := 0; i < global.PuzzleColumns; i++ {
 		for j := 0; j < global.PuzzleRows; j++ {
+			x := i * width
+			y := j * height
 
-			screen.DrawImage(g.subImgs[g.board[i][j]], nil)
+			opts := &ebiten.DrawImageOptions{}
+			opts.GeoM.Translate(float64(x), float64(y))
+
+			screen.DrawImage(g.subImgs[g.board[i][j]], opts)
 
 		}
 	}
