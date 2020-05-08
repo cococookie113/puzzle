@@ -36,7 +36,7 @@ func (g *GameScene) Startup() {
 	for i := 0; i < global.PuzzleColumns; i++ {
 		for j := 0; i < global.PuzzleRows; j++ {
 
-			g.board[i][j] = j*global.PuzzleColumns + i
+			g.board[i][j] = j*global.PuzzleColumns + i - 1
 
 		}
 	}
