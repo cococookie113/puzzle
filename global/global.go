@@ -6,6 +6,6 @@ const (
 	//ScreenHeight height of screen
 	ScreenHeight = 521
 
-	//StartSceneText Press Any Button
+	//StartSceneText text of startscene
 	StartSceneText = "Press Any Button"
 )
